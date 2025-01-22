@@ -194,7 +194,9 @@ public class VectorTileLoader extends TileLoader implements RenderStyle.Callback
         if (element.type == GeometryType.POINT) {
             renderNode(renderTheme.matchElement(element.type, tags, mTile.zoomLevel));
         } else {
-            mCurBucket = getValidLayer(element.layer) * renderTheme.getLevels() * (element.level > 0 ? element.level : 1);
+            //mCurBucket = getValidLayer(element.layer) * renderTheme.getLevels() * (element.level > 0 ? element.level : 1);
+	    //Reverted code back as the above logic causes polygon triangulation issues when mCurBucket is doubled in size
+	    mCurBucket = getValidLayer(element.layer) * renderTheme.getLevels();
             renderWay(renderTheme.matchElement(element.type, tags, mTile.zoomLevel));
         }
         clearState();
