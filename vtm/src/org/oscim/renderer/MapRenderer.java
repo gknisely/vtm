@@ -87,6 +87,9 @@ public class MapRenderer {
     }
 
     public void onDrawFrame() {
+
+	long t1 = System.currentTimeMillis();
+
         frametime = System.currentTimeMillis();
         rerender = false;
 
@@ -102,6 +105,9 @@ public class MapRenderer {
 
         mBufferPool.releaseBuffers();
         TextureItem.disposeTextures();
+
+	long t2 = System.currentTimeMillis();
+        log.debug("VTM onDrawFrame: total time={}", t2 - t1);
     }
 
     private void draw() {
