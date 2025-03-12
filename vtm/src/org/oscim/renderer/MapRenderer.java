@@ -107,7 +107,7 @@ public class MapRenderer {
         TextureItem.disposeTextures();
 
 	long t2 = System.currentTimeMillis();
-        log.debug("VTM onDrawFrame: total time={}", t2 - t1);
+        log.info("VTM onDrawFrame: total time= " + (t2 - t1));
     }
 
     private void draw() {
