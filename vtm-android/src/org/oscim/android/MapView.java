@@ -265,6 +265,7 @@ public class MapView extends GLSurfaceView {
 
         @Override
         public void updateMap(boolean redraw) {
+	    long t1 = System.currentTimeMillis();	
             synchronized (mRedrawCb) {
                 if (mPausing)
                     return;
@@ -276,6 +277,8 @@ public class MapView extends GLSurfaceView {
                     mRenderWait = true;
                 }
             }
+	    long t2 = System.currentTimeMillis();
+            log.info("VTM updateMap: total time= " + (t2 - t1));
         }
 
         @Override
