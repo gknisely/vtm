@@ -61,7 +61,7 @@ public class MapRenderer {
     private static boolean rerender;
 
     private static NativeBufferPool mBufferPool;
-
+    private long count = 0;
     private float viewPortScale = 1;
 
     public MapRenderer(Map map) {
@@ -107,7 +107,8 @@ public class MapRenderer {
         TextureItem.disposeTextures();
 
 	long t2 = System.currentTimeMillis();
-        log.info("VTM onDrawFrame: total time= " + (t2 - t1));
+	count = count + 1;
+        log.info("VTM onDrawFrame: total time= " + (t2 - t1) + " Count= " + count);
     }
 
     private void draw() {
