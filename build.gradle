@@ -10,7 +10,7 @@ buildscript {
 
 allprojects {
     group = 'org.mapsforge'
-    version = 'master-SNAPSHOT'
+    version = '0.17.1'
 
     ext.gdxVersion = "1.9.10"
     ext.gwtVersion = "2.8.2"
