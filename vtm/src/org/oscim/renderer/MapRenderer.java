@@ -102,7 +102,7 @@ public class MapRenderer {
 
 	long t2 = System.currentTimeMillis();
 	count = count + 1;
-        log.info("VTM onDrawFrame: total time= " + (t2 - frametime) + " Count= " + count);
+        System.out.println("VTM onDrawFrame: total time= " + (t2 - frametime) + " Count= " + count);
 
     }
 
