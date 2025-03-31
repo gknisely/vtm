@@ -625,6 +625,36 @@ public class XmlThemeBuilder {
             else if ("repeat-gap".equals(name))
                 b.repeatGap = Float.parseFloat(value) * mScale;
 
+            else if ("align-center".equals(name))
+                ; // no-op
+
+            else if ("curve".equals(name))
+                ; // no-op
+
+            else if ("display".equals(name))
+                ; // no-op
+
+            else if ("dy".equals(name))
+                ; // no-op
+
+            else if ("position".equals(name))
+                ; // no-op
+
+            else if ("priority".equals(name))
+                ; // no-op
+
+            else if ("repeat".equals(name))
+                ; // no-op
+
+            else if ("rotate".equals(name))
+                ; // no-op
+
+            else if ("scale".equals(name))
+                ; // no-op
+
+            else if ("stroke-linejoin".equals(name))
+                ; // no-op
+
             else
                 logUnknownAttribute(elementName, name, value, i);
         }
@@ -968,6 +998,9 @@ public class XmlThemeBuilder {
             else if ("base-text-scale".equals(name) || "base-text-size".equals(name))
                 baseTextScale = Float.parseFloat(value);
 
+            else if ("map-background-outside".equals(name))
+                ; // no-op
+
             else
                 logUnknownAttribute(elementName, name, value, i);
 
@@ -1109,7 +1142,31 @@ public class XmlThemeBuilder {
                     b.dy = -Float.parseFloat(value) * mScale * CanvasAdapter.symbolScale;
                 }
 
-            } else
+            } else if ("display".equals(name))
+                ; // no-op
+
+            else if ("repeat".equals(name))
+                ; // no-op
+
+            else if ("repeat-gap".equals(name))
+                ; // no-op
+
+            else if ("repeat-start".equals(name))
+                ; // no-op
+
+            else if ("symbol-id".equals(name))
+                ; // no-op
+
+            else if ("text-orientation".equals(name))
+                ; // no-op
+
+            else if ("text-transform".equals(name))
+                ; // no-op
+
+            else if ("text-wrap-width".equals(name))
+                ; // no-op
+
+            else
                 logUnknownAttribute(elementName, name, value, i);
         }
 
@@ -1251,6 +1308,12 @@ public class XmlThemeBuilder {
 
             else if ("rotate".equals(name))
                 b.rotate(Boolean.parseBoolean(value));
+
+            else if ("display".equals(name))
+                ; // no-op
+
+            else if ("priority".equals(name))
+                ; // no-op
 
             else
                 logUnknownAttribute(elementName, name, value, i);
@@ -1419,12 +1482,17 @@ public class XmlThemeBuilder {
      * Building rule for Mapsforge themes.
      */
     private RuleBuilder buildingRule() {
+        boolean dark = false;
+        if (mTheme instanceof ExternalRenderTheme)
+            dark = ((ExternalRenderTheme) mTheme).mPath.toLowerCase(Locale.ROOT).contains("dark");
+        else if (mTheme instanceof ZipRenderTheme)
+            dark = ((ZipRenderTheme) mTheme).mXmlTheme.toLowerCase(Locale.ROOT).contains("dark");
         ExtrusionBuilder<?> b = mExtrusionBuilder.reset();
         b.level(mLevels++);
         b.themeCallback(mThemeCallback);
-        b.colorLine(0xffd9d8d6);
-        b.colorSide(0xeaecebe9);
-        b.colorTop(0xeaf9f8f6);
+        b.colorLine(dark ? 0x50606060 : 0xffd9d8d6);
+        b.colorSide(dark ? 0xea404040 : 0xeaecebe9);
+        b.colorTop(dark ? 0xea404040 : 0xeaf9f8f6);
         RuleBuilder rule = new RuleBuilder(RuleBuilder.RuleType.POSITIVE, new String[]{Tag.KEY_BUILDING, Tag.KEY_BUILDING_PART}, new String[]{});
         rule.element(Rule.Element.WAY).zoom((byte) 17, Byte.MAX_VALUE).style(b);
         return rule;

@@ -27,6 +27,7 @@ import org.oscim.theme.RenderTheme;
 import org.oscim.theme.styles.*;
 import org.oscim.tiling.ITileDataSource;
 import org.oscim.tiling.QueryResult;
+import org.oscim.utils.Constants;
 
 import java.util.logging.Logger;
 
@@ -294,7 +295,11 @@ public class VectorTileLoader extends TileLoader implements RenderStyle.Callback
 
         mTileLayer.callThemeHooks(mTile, mBuckets, mElement, area, nLevel);
 
-        if (USE_MESH_POLY || area.mesh) {
+        // Use tessellation with Mapsforge and Freizeitkarte artificial tags for land/sea areas
+        boolean mesh = mElement.tags.contains(Constants.TAG_MAPSFORGE_ISSEA) || mElement.tags.contains(Constants.TAG_MAPSFORGE_NOSEA) || mElement.tags.contains(Constants.TAG_MAPSFORGE_SEA)
+                || mElement.tags.contains(Constants.TAG_FREIZEITKARTE_LAND) || mElement.tags.contains(Constants.TAG_FREIZEITKARTE_MEER);
+
+        if (USE_MESH_POLY || area.mesh || mesh) {
             MeshBucket mb = mBuckets.getMeshBucket(nLevel);
             mb.area = area;
             mb.addMesh(mElement);
