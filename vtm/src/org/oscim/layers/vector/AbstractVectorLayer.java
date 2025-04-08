@@ -154,7 +154,8 @@ public abstract class AbstractVectorLayer<T> extends Layer implements UpdateList
 
             t.buckets.prepare();
 
-            mMap.render();
+	    // DWN remove for now.
+            //mMap.render();
             return true;
         }
     }
