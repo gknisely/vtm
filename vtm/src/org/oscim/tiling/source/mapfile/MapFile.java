@@ -541,6 +541,11 @@ public class MapFile implements ITileDataSource {
                  * file */
                 long blockNumber = row * subFileParameter.blocksWidth + column;
 
+		log.warning("Exception: " + mTileSource + " " + mTileSource.databaseIndexCache);
+
+
+		if (mTileSource.databaseIndexCache == null)
+			return;
                 /* get the current index entry */
                 long blockIndexEntry = mTileSource.databaseIndexCache.getIndexEntry(subFileParameter,
                         blockNumber);
