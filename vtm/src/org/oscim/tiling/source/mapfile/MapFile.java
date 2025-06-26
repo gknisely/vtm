@@ -542,7 +542,7 @@ public class MapFile implements ITileDataSource {
                 long blockNumber = row * subFileParameter.blocksWidth + column;
 
                 if (mTileSource.databaseIndexCache == null) {
-                    log.warning("databaseIndexCache not initialized");
+                    log.warning("databaseIndexCache not initialized " + mTileSource.getName());
                     return;
                 }
                 /* get the current index entry */
